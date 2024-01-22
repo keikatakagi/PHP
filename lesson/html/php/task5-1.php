@@ -7,13 +7,21 @@
   <title>Document</title>
 </head>
 <body>
+  <table class="task5">
+
   <?php
+
   for ($i = 1; $i <= 9; $i++){
+    echo '<tr class="task5">';
     for($j = 1; $j <= 9; $j++){
-      echo '<div class="box99">' . $i . ' × ' . $j . ' = ' . $i * $j .  '　</div>';
+      echo '<td class="task5">' . $i . ' × ' . $j . ' = ' . $i * $j .  '</td>';
     }
-    echo '<br>';
+    echo '</tr>';
   }
+
+  // 質問メモ　divで括ってCSSで調整しているが他にやり方があるか　→tableを使う
   ?>
+
+  </table>
 </body>
 </html>

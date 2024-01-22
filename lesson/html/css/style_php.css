@@ -17,10 +17,9 @@ div {
   background-color: lightgray;
 }
 
-.box99 {
-  display: inline-block;
-  width: 100px;
+.task5{
   margin: 0;
-  padding: 2px;
-  background-color: #fff;
+  text-align: left;
+  border: none;
+  padding: 0 7px;
 }
