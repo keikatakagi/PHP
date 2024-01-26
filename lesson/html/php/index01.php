@@ -7,6 +7,48 @@
   <title>PHP基礎知識</title>
 </head>
 <body>
+  <div class="lesson06">
+    <?php
+      function avg($a, $b){
+        $n = ($a + $b) / 2;
+        return $n;
+      }
+
+      $num1 = 35;
+      $num2 = 28;
+
+      $avg1 = avg($num1, $num2);
+      $avg2 = avg(1.2, 5.3);
+
+      echo "{$num1}と{$num2}の平均値は、{$avg1}です。<br>";
+      echo "1.2と5.3の平均値は、{$avg2}です。<br>";
+    ?>
+
+    <br>
+
+    <?php
+      function animal1($a){
+        $a = 'ライオン';
+      }
+      
+      function animal2(&$a){
+        $a = 'チーター';
+      }
+
+      $taro_pet = 'ネコ';
+      $jiro_pet = 'ネコ';
+
+      animal1($taro_pet);
+      animal2($taro_pet);
+
+      echo "太郎のペットは、{$taro_pet}です。<br>";
+      echo "次郎のペットは、{$jiro_pet}です。<br>";
+
+      
+
+    ?>
+  </div>
+
 
   <div class="lesson05">
     <?php

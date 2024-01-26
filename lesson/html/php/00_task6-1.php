@@ -7,15 +7,20 @@
 </head>
 <body>
   <?php
-  $num = 3;
-  $str = '気合いだ！';
   function showString ($num, $str){
     if($num <= 3){
       echo $str;
-      $num--;
+      return $num--;
     }
-
   }
+
+  $a = 3;
+  $b = '気合いだ！';
+
+  $c = showString($a, $b);
+
+  echo $a;
+
   ?>
 </body>
 </html>
