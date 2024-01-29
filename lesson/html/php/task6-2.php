@@ -8,15 +8,18 @@
 <body>
   <?php
 
-  //  max_number($n1,$n2){
-  //   $maximum = max($n1,$n2);
-  //   return $maximum;
-  //  }
+  function max_number($n1,$n2){
+    if ($n1 > $n2) {
+      return $n1;
+    } else {
+      return $n2;
+    }
+  }
 
    $a = 9;
    $b = 21;
 
-   $num = max($a,$b);
+   $num = max_number($a,$b);
 
    echo '$a = ' . $a . '<br>';
    echo '$b = ' . $b . '<br>';

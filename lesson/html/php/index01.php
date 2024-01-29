@@ -7,6 +7,100 @@
   <title>PHP基礎知識</title>
 </head>
 <body>
+  <div class="lesson07">
+    <?php
+    ini_set('display_errors', 1);
+    // クラス
+    class Post{
+      private $text;
+      private $likes = 0;
+      private static $count = 0;  //static　classの中でしか使わない
+      public const VERSION = 0.1;
+
+      public function __construct($text){
+        $this -> text = $text;
+        self::$count++;
+      }
+
+      public function show(){
+        printf('%s (%d)<br>', $this -> text, $this -> likes);
+      }
+      public function like(){
+        $this-> likes++;
+      }
+      public static function showCount(){
+        printf('Count: %d<br>', self::$count);
+        printf('Version: %.1f<br>', self::VERSION);
+      }
+    }
+
+      $posts = [];
+      $posts[0] = new Post('Hello');
+      $posts[1] = new Post('Hi!');
+
+      $posts[0]->like();
+
+      $posts[0]->show();
+      $posts[1]->show();
+
+      Post::showCount();
+      echo Post::VERSION. '<br>';
+    ?>
+
+    <br>
+
+    <?php
+    abstract class MainPost{
+      abstract public function show();
+      protected $text;
+  
+      public function __construct($text){
+        $this -> text = $text;
+      }
+    }
+
+    // 親クラス
+    class Post2 extends MainPost{
+
+      public function show(){
+        printf('%s<br>', $this -> text);
+      }
+    }
+    //子クラス 
+    class SponserPost extends Post2{
+      private $sponser;
+
+      public function __construct($text, $sponser){
+        parent::__construct($text);
+        $this -> sponser = $sponser;
+      }
+
+      public function show(){
+        printf('%s by %s<br>', $this -> text, $this -> sponser);
+      }
+    }
+
+      $posts = [];
+      $posts[0] = new Post2('Hello');
+      $posts[1] = new Post2('Hi!');
+      $posts[2] = new SponserPost('Good Moerning!','WingNoah');
+
+      function AllPost(MainPost $post){
+        $post -> show();
+      }
+
+      foreach ($posts as $post){
+        AllPost($post);
+      }
+
+      // $posts[0]->show();
+      // $posts[1]->show();
+      // $posts[2]->show();
+      // $posts[2]->showSponser();
+    ?>
+
+  </div>
+
   <div class="lesson06">
     <?php
       function avg($a, $b){
@@ -48,7 +142,6 @@
 
     ?>
   </div>
-
 
   <div class="lesson05">
     <?php

@@ -8,7 +8,7 @@
 <body>
   <?php
   function showString ($num, $str){
-    for($num <= 3; $num--;){
+    for($i = 1; $i <= $num; $i++){
       echo $str . '<br>';
     }
   }
@@ -16,10 +16,8 @@
   $a = 3;
   $b = '気合いだ！';
 
-  $c = showString($a, $b);
+  showString($a, $b);
 
-  echo $c;
-
-  ?>
+?>
 </body>
 </html>
