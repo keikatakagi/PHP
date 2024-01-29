@@ -8,9 +8,8 @@
 <body>
   <?php
   function showString ($num, $str){
-    if($num <= 3){
-      echo $str;
-      return $num--;
+    for($num <= 3; $num--;){
+      echo $str . '<br>';
     }
   }
 
@@ -19,7 +18,7 @@
 
   $c = showString($a, $b);
 
-  echo $a;
+  echo $c;
 
   ?>
 </body>
