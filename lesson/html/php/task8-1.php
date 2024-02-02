@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,7 +8,7 @@
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <title>お問い合わせ</title>
+  <title>お問い合わせ - 確認</title>
 </head>
 <body>
   <header>
@@ -16,7 +18,7 @@
           <h1>ここには会社名が入ります</h1>
         </div>
         <div class="head_box">
-          <a href="../index.html" class="head_btn btn01">ボタン01</a>
+          <a href="../index.html" class="head_btn btn01">トップページ</a>
           <a href="#" class="head_btn btn02">ボタン02</a>
         </div>
       </div>
@@ -39,13 +41,35 @@
   <section class="form_01">
     <div class="wrapper">
         <div class="form_01_title">
-          <h1>お問い合わせ</h1>
-          <p>お問い合わせや業務内容に関するご質問は、電話またはこちらのお問い合わせフォームより承っております。<br>
-          後ほど担当者よりご連絡させていただきます。</p>
+          <h1>お問い合わせ内容の確認</h1>
         </div>
         <div class="form_box">
-          <form action="../php/task8-1.php" method="post">
-            <div class="form_content">
+          <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+              $name = $_POST["name"];
+              $name = $_POST["name_kana"];
+              $email = $_POST["email"];
+              $phone = $_POST["phone"];
+              $inquiry_type = $_POST["inquiry_type"];
+              $inquiry_content = $_POST["inquiry_content"];
+
+            // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            //   die("エラー: 正しい形式のメールアドレスを入力してください。");
+            // }
+
+            // if (!preg_match('/^\d{10,11}$/', $phone)) {
+            //   die("エラー: 電話番号は10桁または11桁で入力してください。");
+            // }
+
+            echo "<p>お名前: $name</p>";
+            echo "<p>フリガナ: $name_kana</p>";
+            echo "<p>メールアドレス: $email</p>";
+            echo "<p>電話番号: $phone</p>";
+            echo "<p>お問い合わせ項目: $inquiry_type</p>";
+            echo "<p>お問い合わせ内容: $inquiry_content</p>";
+            }
+          ?>
+            <!-- <div class="form_content">
               <label for="name">お名前<span class="form_required">必須</span></label>
               <input type="text" name="name" id="name" placeholder="山田太郎" required>
             </div>
@@ -81,9 +105,16 @@
                 <input type="checkbox" name="policy" id="policy" required>
                 <label for="policy"><a href="#">個人情報保護方針<span class="material-symbols-outlined">description</span></a>に同意します。</label>
               </div>
-            </div>
+            </div> -->
             <div class="form_btn_box">
-              <input type="submit" class="form_btn" value="確認">
+              <form action="task8-2.php" method="post">
+              <input type="hidden" name="name" value="<?php echo htmlspecialchars($name, ENT_QUOTES); ?>">
+              <input type="hidden" name="name_kana" value="<?php echo htmlspecialchars($name_kana, ENT_QUOTES); ?>">
+              <input type="hidden" name="email" value="<?php echo htmlspecialchars($email, ENT_QUOTES); ?>">
+              <input type="hidden" name="phone" value="<?php echo htmlspecialchars($phone, ENT_QUOTES); ?>">
+              <input type="hidden" name="inquiry_type" value="<?php echo htmlspecialchars($inquiry_type, ENT_QUOTES); ?>">
+              <input type="hidden" name="inquiry_content" value="<?php echo htmlspecialchars($inquiry_content, ENT_QUOTES); ?>">
+              <input type="submit" name="submit" class="form_btn" value="送信">
             </div>
           </form>
         </div>
