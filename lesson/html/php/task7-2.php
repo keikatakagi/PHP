@@ -19,9 +19,8 @@
       $this -> name = $name;
       $this -> age = $age;
       $this -> sex = $sex;
-      $this -> number();
     }
-    protected function number(){
+    public function number(){
       self::$id++;
     }
     public function show(){
@@ -37,7 +36,6 @@
       $this -> age = $age;
       $this -> sex = $sex;
       $this -> jikyu = $jikyu;
-      $this -> number();
     }
     public function number(){
       self::$id++;
@@ -47,23 +45,18 @@
     }
   }
 
-  $staff =[];
-  $staff[0] = new Staff('佐藤　一郎', '31', '男');
-  $staff[0]->show();
+  $staff = [];
+  $staff[] = new Staff('佐藤 一郎', '31', '男');
+  $staff[] = new Staff('山田 花子', '25', '女');
+  $staff[] = new Staff('鈴木 次郎', '27', '男');
+  $staff[] = new PartStaff('田中 友子', '24', '女','900');
+  $staff[] = new Staff('中村 三郎', '27', '男');
 
-  $staff[1] = new Staff('山田　花子', '25', '女');
-  $staff[1]->show();
-
-  $staff[2] = new Staff('鈴木　次郎', '27', '男');
-  $staff[2]->show();
-
-  $staff[3] = new PartStaff('田中　友子', '24', '女','900');
-  $staff[3]->show();
-
-  $staff[4] = new Staff('中村　三郎', '27', '男');
-  $staff[4]->show();
+  foreach($staff as $result){
+    $result->number();
+    $result->show();
+    }
   
-
   ?>
 </body>
 </html>
