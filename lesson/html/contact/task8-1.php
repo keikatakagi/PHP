@@ -7,36 +7,12 @@
     $inquiry_type = $_POST["inquiry_type"];
     $inquiry_content = $_POST["inquiry_content"];
     $policy = $_POST["policy"];
-
-    if(empty($_POST['name'])){
-      echo "お名前が未入力です。";
-    }
-    if(empty($_POST['name_kana'])){
-      echo "フリガナが未入力です。";
-    }
-
-    if(empty($_POST['email'])){
-      echo "メールアドレスが未入力です。";
-    }
-
-    if(empty($_POST['phone'])){
-      echo "電話番号が未入力です。";
-    } elseif (strlen($phone) != 10 || strlen($phone) != 11){
-      echo "電話番号は１０桁もしくは１１桁で入力してください。";
-    }
-
-    if(empty($_POST['inquiry_type'])){
-      echo "お問い合わせ項目が未選択です。";
-    }
-    if(empty($_POST['inquiry_content'])){
-      echo "お問い合わせ内容が未入力です。";
-    }
-    if(empty($_POST['policy'])){
-      echo "個人情報保護方針をご確認の上、チェックをつけてください。";
-    }
-
   }
+
+  $i = 0;
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -80,48 +56,97 @@
     <div class="wrapper">
       <div class="form_01_title">
         <h1>お問い合わせ内容の確認</h1>
+        <?php
+            if(empty($name)){
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">お名前が未入力です。</p>';
+              $i++;
+            } 
+            if(empty($name_kana)){
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">フリガナが未入力です。</p>';
+              $i++;
+            }
+
+            if(empty($email)){
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">メールアドレスが未入力です。</p>';
+              $i++;
+            } elseif(strpos($email, '@') === false) {
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">メールアドレスには @ が含まれている必要があります。</p>';
+              $i++;
+            }
+
+            if(empty($phone)){
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">電話番号が未入力です。';
+              $i++;
+            } elseif (strlen($phone) <10 || strlen($phone) > 11){
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">電話番号は１０桁もしくは１１桁で入力してください。</p>';
+              $i++;
+            }
+
+            if(empty($inquiry_type)){
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">お問い合わせ項目が未選択です。</p>';
+              $i++;
+            }
+            if(empty($inquiry_content)){
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">お問い合わせ内容が未入力です。</p>';
+              $i++;
+            }
+            if(empty($policy)){
+              echo '<p style="color:red; font-weight:bold; font-size:20px;">個人情報保護方針をご確認の上、チェックをつけてください。</p>';
+              $i++;
+            }
+
+            // // 入力されたデータの確認
+            // var_dump($name);
+            // var_dump($name_kana);
+            // var_dump($email);
+            // var_dump($phone);
+            // var_dump($inquiry_type);
+            // var_dump($inquiry_content);
+            // var_dump($policy);
+        ?>
       </div>
       <div class="form_box">
-        <form action="task8-1.php" method="post">
+        <form action="<?php if($i > 0){echo 'task8-1.php';} else {echo 'task8-2.php';} ?>" method="post">
           <div class="form_content">
             <label for="name">お名前<span class="form_required">必須</span></label>
-            <input type="text" name="name" id="name" placeholder="山田太郎" vakue="<?= $name ?>">
+            <input type="text" name="name" placeholder="山田太郎" value="<?= $name ?>">
           </div>
           <div class="form_content">
             <label for="name_kana">フリガナ<span class="form_required">必須</span></label>
-            <input type="text" name="name_kana" id="name_kana" placeholder="ヤマダタロウ" vakue="<?= $name_kana ?>">
+            <input type="text" name="name_kana" placeholder="ヤマダタロウ" value="<?= $name_kana ?>">
           </div>
           <div class="form_content">
             <label for="email">メールアドレス<span class="form_required">必須</span></label>
-            <input type="email" name="email" id="email" placeholder="info@fast-creademy.jp">
+            <input type="text" name="email" placeholder="info@fast-creademy.jp" value="<?= $email ?>">
           </div>
           <div class="form_content">
             <label for="phone">電話番号<span class="form_required">必須</span></label>
-            <input type="tel" name="phone" id="phone" placeholder="0123456789">
+            <input type="tel" name="phone" placeholder="0123456789" value="<?= $phone ?>">
           </div>
           <div class="form_content">
             <label for="inquiry_type">お問い合わせ項目<span class="form_required">必須</span></label>
-            <select name="inquiry_type" id="inquiry_type">
+            <select name="inquiry_type">
               <option value="" disabled selected>選択してください</option>
-              <option value="選択肢01">選択肢01</option>
-              <option value="選択肢02">選択肢02</option>
-              <option value="選択肢03">選択肢03</option>
-              <option value="選択肢04">選択肢04</option>
+              <option value="選択肢01" <?php if($inquiry_type == '選択肢01'){echo 'selected';} ?>>選択肢01</option>
+              <option value="選択肢02" <?php if($inquiry_type == '選択肢02'){echo 'selected';} ?>>選択肢02</option>
+              <option value="選択肢03" <?php if($inquiry_type == '選択肢03'){echo 'selected';} ?>>選択肢03</option>
+              <option value="選択肢04" <?php if($inquiry_type == '選択肢04'){echo 'selected';} ?>>選択肢04</option>
             </select>
           </div>
           <div class="form_content">
             <label for="inquiry_content">お問い合わせ内容<span class="form_required">必須</span></label>
-            <textarea name="inquiry_content" id="inquiry_content" placeholder="こちらにお問い合わせ内容をご記入ください"></textarea>
+            <textarea name="inquiry_content" placeholder="こちらにお問い合わせ内容をご記入ください"><?= $inquiry_content ?></textarea>
           </div>
           <div class="form_content">
             <label>個人情報保護方針<span class="form_required">必須</span></label>
             <div class="policy">
-              <input type="checkbox" name="policy" id="policy">
+              <input type="checkbox" name="policy" id="policy" <?php if($policy == 'on'){echo 'checked';} ?>>
               <label for="policy"><a href="#">個人情報保護方針<span class="material-symbols-outlined">description</span></a>に同意します。</label>
             </div>
           </div>
           <div class="form_btn_box">
-              <input type="submit" class="form_btn" value="確認">
+              <?php if($i == 0){echo '<p style="font-weight:bold; font-size:20px; padding:20px;">入力内容に間違いがなければ、送信ボタンを押してください。</p><br>';}?> 
+              <input type="submit" class="form_btn" value="<?php if($i > 0){echo '確認';} else {echo '送信';} ?>">
           </div>
         </form>
       </div>

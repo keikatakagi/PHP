@@ -35,6 +35,7 @@ try {
   $stmt->bindParam(7, $policy, PDO::PARAM_STR);
   $result = $stmt->execute();
 
+}
 ?>
 
 <!DOCTYPE html>

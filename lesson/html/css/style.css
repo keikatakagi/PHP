@@ -455,3 +455,13 @@ textarea {
 	padding: 20px;
 	background-color: #1d782e;
 }
+
+.form_btn_box p{
+	color: rebeccapurple;
+	font-weight: bold;
+}
+
+/* .check_msg {
+	color: rebeccapurple;
+	font-weight: bold;
+} */
