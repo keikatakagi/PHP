@@ -3,12 +3,12 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = $_POST["name"];
-  $name = $_POST["name_kana"];
+  $name_kana = $_POST["name_kana"];
   $email = $_POST["email"];
-  $email = $_POST["tel"];
-  $message = $_POST["inquiry_type"];
-  $message = $_POST["inquiry_content"];
-  $message = $_POST["policy"];
+  $phone = $_POST["phone"];
+  $inquiry_type = $_POST["inquiry_type"];
+  $inquiry_content = $_POST["inquiry_content"];
+  $policy = $_POST["policy"];
 }
 
 try {
@@ -25,16 +25,32 @@ try {
       ]
   );
 
-  $stmt = $pdo->prepare("INSERT INTO consumer VALUES(?,?,?,?,?,?,?);");
+    $pdo->query("DROP TABLE IF EXISTS contact");
+    $pdo->query(
+        "CREATE TABLE contact(
+        name  VARCHAR(128) PRIMARY KEY,
+        name_kana  VARCHAR(128),
+        email  VARCHAR(128),
+        phone   INT,
+        inquiry_type  VARCHAR(128),
+        inquiry_content  VARCHAR(128),
+        policy  VARCHAR(128)
+      )"
+    );
+
+  $stmt = $pdo->prepare("INSERT INTO contact VALUES(?,?,?,?,?,?,?);");
   $stmt->bindParam(1, $name, PDO::PARAM_INT);
   $stmt->bindParam(2, $name_kana, PDO::PARAM_STR);
   $stmt->bindParam(3, $email, PDO::PARAM_INT);
-  $stmt->bindParam(4, $tel, PDO::PARAM_STR);
+  $stmt->bindParam(4, $phone, PDO::PARAM_STR);
   $stmt->bindParam(5, $inquiry_type, PDO::PARAM_STR);
   $stmt->bindParam(6, $inquiry_content, PDO::PARAM_STR);
   $stmt->bindParam(7, $policy, PDO::PARAM_STR);
   $result = $stmt->execute();
 
+} catch (PDOException $e) {
+  echo $e->getMessage() . '<br>';
+  exit;
 }
 ?>
 
