@@ -26,34 +26,37 @@ try {
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
       ]
   );
+      
+    // $pdo->query("DROP TABLE IF EXISTS contact");
+    // // exit;
 
-    $pdo->query(
-        "CREATE TABLE IF NOT EXISTS contact(
-        name  VARCHAR(128),
-        name_kana  VARCHAR(128),
-        email  VARCHAR(128),
-        phone   INT,
-        inquiry_type  VARCHAR(128),
-        inquiry_content VARCHAR(256),
-        policy  VARCHAR(128)
-      )"
-    );
+    // $pdo->query(
+    //     "CREATE TABLE IF NOT EXISTS contact(
+    //     name  VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    //     name_kana  VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    //     email  VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    //     phone   STR,
+    //     inquiry_type  VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    //     inquiry_content VARCHAR(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    //     policy  VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+    //   )"
+    // );
 
   $stmt = $pdo->prepare("INSERT INTO contact VALUES(?,?,?,?,?,?,?);");
   $stmt->bindParam(1, $name, PDO::PARAM_STR);
   $stmt->bindParam(2, $name_kana, PDO::PARAM_STR);
   $stmt->bindParam(3, $email, PDO::PARAM_STR);
-  $stmt->bindParam(4, $phone, PDO::PARAM_INT);
+  $stmt->bindParam(4, $phone, PDO::PARAM_STR);
   $stmt->bindParam(5, $inquiry_type, PDO::PARAM_STR);
   $stmt->bindParam(6, $inquiry_content, PDO::PARAM_STR);
   $stmt->bindParam(7, $policy, PDO::PARAM_STR);
   $result = $stmt->execute();
 
-  if ($result) {
-    echo "データが正常に挿入されました。";
-  } else {
-    echo "データの挿入中にエラーが発生しました。";
-  }
+  // if ($result) {
+  //   echo "データが正常に挿入されました。";
+  // } else {
+  //   echo "データの挿入中にエラーが発生しました。";
+  // }
 
 } catch (PDOException $e) {
   echo $e->getMessage() . '<br>';
@@ -104,16 +107,6 @@ try {
         <div class="form_01_title">
           <h1>送信完了しました。</h1>
         </div>
-        <?php
-           // 入力されたデータの確認
-            var_dump($name);
-            var_dump($name_kana);
-            var_dump($email);
-            var_dump($phone);
-            var_dump($inquiry_type);
-            var_dump($inquiry_content);
-            var_dump($policy);
-        ?>
     </div>
   </section>
 
