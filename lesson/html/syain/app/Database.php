@@ -1,7 +1,7 @@
 <?php
-difine('DSN', 'mysql:host=localhost;dbname=company;charset=utf8mb4');
-difine('USER', 'root');
-difine('PASS', 'root');
+define('DSN', 'mysql:host=localhost;dbname=company;charset=utf8mb4');
+define('USER', 'root');
+define('PASS', 'root');
 
 class Database
 {
