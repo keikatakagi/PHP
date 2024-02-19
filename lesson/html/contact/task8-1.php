@@ -106,7 +106,7 @@
         ?>
       </div>
       <div class="form_box">
-        <form action="<?php if($i > 0){echo 'task8-1.php';} else {echo 'task8-2.php';} ?>" method="post">
+        <form action="<?php if($i > 0){echo 'task8-1.php';} else {echo 'task9-1.php';} ?>" method="post">
           <div class="form_content">
             <label for="name">お名前<span class="form_required">必須</span></label>
             <input type="text" name="name" placeholder="山田太郎" value="<?= $name ?>">
