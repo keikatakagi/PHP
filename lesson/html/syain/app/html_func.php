@@ -27,26 +27,28 @@ function show_down($return = false)
 BOTTOM;
 } 
 
-// function show_syainlist($members)
-// {
-//   echo <<<TABLE1
-//     <table>
-//       <tr>
-//         <th>社員番号</th>
-//         <th>名前</th>
-//       </tr>
-//   TABLE1;
-//   foreach ($members as $member){
-//     echo <<<TABLE2
-//       <tr>
-//         <th>($member[id])</th>
-//         <td><a href="syain_edit.php?id=($member[id])">($member["name"])</a></td>
-//       </tr>
-//     TABLE2;
-//   }
-//   echo <<<TABLE3
-//     </table>
-//     <button><a href="syain_create.php">社員情報の追加</a></button>
-//   TABLE3;
-// }
+
+function show_syainlist($members)
+{
+  echo <<<TABLE1
+    <table>
+      <tr>
+        <th>社員番号</th>
+        <th>名前</th>
+      </tr>
+  TABLE1;
+  foreach ($members as $member){
+    echo <<<TABLE2
+      <tr>
+        <th>{$member[id]}</th>
+        <td><a href="syain_edit.php?id=($member[id])">{$member["name"]}</a></td>
+      </tr>
+    TABLE2;
+  }
+  echo <<<TABLE3
+    </table>
+    <button><a href="syain_create.php">社員情報の追加</a></button>
+  TABLE3;
+}
+
 ?>
