@@ -29,6 +29,7 @@ BOTTOM;
 
 function show_syainlist($members)
 {
+  // var_dump($members);
   echo <<<TABLE1
     <table>
       <tr>
@@ -39,8 +40,8 @@ TABLE1;
   foreach ($members as $member) {
     echo <<<TABLE2
       <tr>
-        <th>{$member[id]}</th>
-        <td><a href="syain_edit.php?id=($member[id])">{$member["name"]}</a></td>
+        <th>{$member["id"]}</th>
+        <td><a href="syain_edit.php?id={$member["id"]}">{$member["name"]}</a></td>
       </tr>
 TABLE2;
   }
@@ -75,6 +76,8 @@ FORM;
 function show_create()
 {
   $error = get_error();
-  show_form("","","","","","create","登録");
+  // var_dump($id);
+  // $id = $_POST['id'];
+  show_form($id, "", "", "","","create","登録");
 }
 ?>

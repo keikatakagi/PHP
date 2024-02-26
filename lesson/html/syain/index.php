@@ -3,8 +3,9 @@
 ini_set('display_errors', "On");
 
 require_once('common.php');
-// $members = $db->getallsyain();
+$members = $db->getallsyain();
 show_top();
-// show_syainlist($members);
+// var_dump($members);
+show_syainlist($members);
 show_down();
 ?>

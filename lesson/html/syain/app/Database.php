@@ -9,7 +9,7 @@ class Database
 
   private function connect()
   {
-    if (!isset($this->$pdo)){
+    if (!isset($this->pdo)){
       $this->pdo = new PDO(
         DSN,
         USER,
@@ -26,7 +26,7 @@ class Database
   {
     try {
       $this->connect();
-      $stmt = $this->$pdo->query("SELECT id, name FROM syain ORDER BY id;");
+      $stmt = $this->pdo->query("SELECT id, name FROM syain ORDER BY id;");
       $members =  $stmt->fetchAll();
       return $members;
     } catch (PDOException $e) {
@@ -39,7 +39,7 @@ class Database
   {
     try {
       $this->connect();
-      $stmt = $this->$pdo->prepare("SELECT * FROM syain WHERE id = ? ;");
+      $stmt = $this->pdo->prepare("SELECT * FROM syain WHERE id = ? ;");
       $stmt->bindParam(1,$id, PDO::PARAM_INT);
       $member = $stmt->execute();
       if ($member) {
@@ -67,7 +67,7 @@ class Database
   function createsyain($id, $name, $age, $work)
   {
     try {
-      $stmt = $this->$pdo->prepare("INSERT INTO syain VALUES(?,?,?,?);");
+      $stmt = $this->pdo->prepare("INSERT INTO syain VALUES(?,?,?,?);");
       $stmt->bindParam(1, $id, PDO::PARAM_INT);
       $stmt->bindParam(2, $name, PDO::PARAM_STR);
       $stmt->bindParam(3, $age, PDO::PARAM_INT);
