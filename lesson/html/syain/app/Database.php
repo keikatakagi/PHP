@@ -80,5 +80,18 @@ class Database
     }
     return false;
   }
+
+  function deletesyain($id){
+    try {
+      $stmt = $this->pdo->prepare("DELETE FROM syain WHERE id = :id");
+      $stmt->bindParam(':id', $id);
+      $result = $stmt->execute();
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage() . '<br>';
+      exit;
+    }
+    return false;
+  }
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-function check_input($id, $name, $age, $work, $error)
+function check_input($id, $name, $age, $work, &$error)
 {
   $error = "";
   if($id === "" or $name === ""){

@@ -65,7 +65,7 @@ function show_form($id, $name, $age, $work, $old_id, $status, $button)
     <input type="text" name="age" placeholder="例）35" value="{$age}">
     <p>勤務形態</p>
     <input type="text" name="work" placeholder="例）社員" value="{$work}">
-    <p>{$error}</p>
+    <p class="red">{$error}</p>
     <input type="hidden" name="old_id" value="{$old_id}">
     <input type="hidden" name="status" value="{$status}">
     <input type="submit" name="button" value="{$button}">
@@ -76,8 +76,33 @@ FORM;
 function show_create()
 {
   $error = get_error();
-  // var_dump($id);
-  // $id = $_POST['id'];
-  show_form($id, "", "", "","","create","登録");
+  var_dump($name);
+  show_form("", "", "", "", "","create","登録");
+}
+
+function show_syain($members){
+  var_dump($members);
+  echo <<<TABLE4
+  <table>
+    <tr>
+      <th>社員番号</th>
+      <th>名前</th>
+      <th>年齢</th>
+      <th>労働形態</th>
+    </tr>
+    <tr>
+      <th>{$members["id"]}</th>
+      <td>{$members["name"]}</td>
+      <td>{$members["age"]}</td>
+      <td>{$members["work"]}</td>
+    </tr>
+  </table>
+  <br>
+  <a href=syain_update.php>社員情報の更新</a>
+  <br>
+  <a href=syain_delete.php>社員情報の削除</a>
+  <br>
+TABLE4;
 }
 ?>
+
