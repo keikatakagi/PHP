@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 require_once('common.php');
 
@@ -19,22 +19,31 @@ if(isset($_POST["status"])){
   if (isset($_POST["old_id"])) {
     $old_id = $_POST["old_id"];
   }
+
   if ($_POST["status"] == "create") {
     if (check_input($id, $name, $age, $work, $error) == false) {
       header("location: syain_create.php?error={$error}");
-      exit();
+      exit;
     }
     if ($db->idexist($id) == true) {
       $error = "既に使用されているIDです";
       header("location: syain_create.php?error={$error}");
-      exit();
+      exit;
     }
     if ($db->createsyain($id, $name, $age, $work) == false) {
       $error = "DBエラー";
       header("location: syain_create.php?error={$error}");
-      exit();
+      exit;
     }
     header("location: index.php");
-    exit();
+    exit;
+  }
+
+  if($_POST["status"] == "delete"){
+    if ($db->deletesyain($id, $name, $age, $work) == false) {
+      $error = "DBエラー";
+      header("location: syain_create.php?error={$error}");
+      exit;
+    }
   }
 }

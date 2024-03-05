@@ -55,6 +55,7 @@ function show_form($id, $name, $age, $work, $old_id, $status, $button)
 {
   $error = "";
   $error = get_error();
+  // var_dump($name);
   echo <<<FORM
   <form action="post_data.php" method="post">
     <p>社員番号</p>
@@ -76,7 +77,7 @@ FORM;
 function show_create()
 {
   $error = get_error();
-  var_dump($name);
+  // var_dump($name);
   show_form("", "", "", "", "","create","登録");
 }
 
@@ -104,5 +105,17 @@ function show_syain($members){
   <br>
 TABLE4;
 }
+
+
+function show_update(){
+  $error = get_error();
+  show_form("", "", "", "", "","update","更新");
+}
+
+function show_delete(){
+  $error = get_error();
+  show_form("", "", "", "", "","delete","削除");
+}
+
 ?>
 
