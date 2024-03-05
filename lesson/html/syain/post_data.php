@@ -22,7 +22,7 @@ if(isset($_POST["status"])){
 
   if ($_POST["status"] == "create") {
     if (check_input($id, $name, $age, $work, $error) == false) {
-      header("location: syain_create.php?error={$error}");
+      header("location: syain_create.php?id={$id}&name={$name}&age={$age}&work={$work}&error={$error}");
       exit;
     }
     if ($db->idexist($id) == true) {

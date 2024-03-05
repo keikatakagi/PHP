@@ -74,15 +74,15 @@ function show_form($id, $name, $age, $work, $old_id, $status, $button)
 FORM;
 }
 
-function show_create()
+function show_create($id, $name, $age, $work)
 {
   $error = get_error();
   // var_dump($name);
-  show_form("", "", "", "", "","create","登録");
+  show_form($id, $name, $age, $work, "","create","登録");
 }
 
-function show_syain($members){
-  var_dump($members);
+function show_syain($member){
+  // var_dump($member);
   echo <<<TABLE4
   <table>
     <tr>
@@ -92,10 +92,10 @@ function show_syain($members){
       <th>労働形態</th>
     </tr>
     <tr>
-      <th>{$members["id"]}</th>
-      <td>{$members["name"]}</td>
-      <td>{$members["age"]}</td>
-      <td>{$members["work"]}</td>
+      <th>{$member["id"]}</th>
+      <td>{$member["name"]}</td>
+      <td>{$member["age"]}</td>
+      <td>{$member["work"]}</td>
     </tr>
   </table>
   <br>
@@ -106,8 +106,7 @@ function show_syain($members){
 TABLE4;
 }
 
-
-function show_update(){
+function show_update($id, $name, $age, $work){
   $error = get_error();
   show_form("", "", "", "", "","update","更新");
 }
@@ -118,4 +117,3 @@ function show_delete(){
 }
 
 ?>
-
