@@ -67,6 +67,7 @@ class Database
   function createsyain($id, $name, $age, $work)
   {
     try {
+      $this->connect();
       $stmt = $this->pdo->prepare("INSERT INTO syain VALUES(?,?,?,?);");
       $stmt->bindParam(1, $id, PDO::PARAM_INT);
       $stmt->bindParam(2, $name, PDO::PARAM_STR);
@@ -81,14 +82,16 @@ class Database
     return false;
   }
 
-  function updatesyain($id, $name, $age, $work)
+  function updatesyain($id, $name, $age, $work, $old_id)
   {
     try {
-      $stmt = $this->pdo->prepare("UPDATE syain SET name = :name, age = :age, work = :work WHERE id = :id");
-      $stmt->bindParam(':id', $id);
-      $stmt->bindParam(':name', $name);
-      $stmt->bindParam(':age', $age);
-      $stmt->bindParam(':work', $work);
+      $this->connect();
+      $stmt = $this->pdo->prepare("UPDATE syain SET id=?, name=?, age=?, work=? WHERE id=?");
+      $stmt->bindParam(1, $id, PDO::PARAM_INT);
+      $stmt->bindParam(2, $name, PDO::PARAM_STR);
+      $stmt->bindParam(3, $age, PDO::PARAM_INT);
+      $stmt->bindParam(4, $work, PDO::PARAM_STR);
+      $stmt->bindParam(5, $old_id, PDO::PARAM_INT);
       $result = $stmt->execute();
       return true;
     } catch (PDOException $e) {
@@ -100,8 +103,9 @@ class Database
 
   function deletesyain($id){
     try {
-      $stmt = $this->pdo->prepare("DELETE FROM syain WHERE id = :id");
-      $stmt->bindParam(':id', $id);
+      $this->connect();
+      $stmt = $this->pdo->prepare("DELETE FROM syain WHERE id=?");
+      $stmt->bindParam(1, $id, PDO::PARAM_INT);
       $result = $stmt->execute();
       return true;
     } catch (PDOException $e) {
@@ -111,4 +115,3 @@ class Database
     return false;
   }
 }
-

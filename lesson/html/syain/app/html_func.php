@@ -98,17 +98,12 @@ function show_syain($member){
       <td>{$member["work"]}</td>
     </tr>
   </table>
-  <br>
-  <a href="syain_update.php?id={$member["id"]}">社員情報の更新</a>
-  <br>
-  <a href="syain_delete.php?id={$member["id"]}">社員情報の削除</a>
-  <br>
 TABLE4;
 }
 
-function show_update($id, $name, $age, $work){
+function show_update($id, $name, $age, $work, $old_id){
   $error = get_error();
-  show_form($id, $name, $age, $work,"","update","更新");
+  show_form($id, $name, $age, $work,$old_id,"update","更新");
 }
 
 function show_delete($id, $name, $age, $work){
@@ -116,4 +111,13 @@ function show_delete($id, $name, $age, $work){
   show_form($id, $name, $age, $work,"","delete","削除");
 }
 
+function show_operation($member){
+  echo <<<TABLE5
+  <br>
+  <a href="syain_update.php?id={$member["id"]}">社員情報の更新</a>
+  <br>
+  <a href="syain_delete.php?id={$member["id"]}">社員情報の削除</a>
+  <br>
+TABLE5;
+}
 ?>
