@@ -78,7 +78,7 @@ function show_create($id, $name, $age, $work)
 {
   $error = get_error();
   // var_dump($name);
-  show_form($id, $name, $age, $work, "","create","登録");
+  show_form($id, $name, $age, $work,"","create","登録");
 }
 
 function show_syain($member){
@@ -99,21 +99,21 @@ function show_syain($member){
     </tr>
   </table>
   <br>
-  <a href=syain_update.php>社員情報の更新</a>
+  <a href="syain_update.php?id={$member["id"]}">社員情報の更新</a>
   <br>
-  <a href=syain_delete.php>社員情報の削除</a>
+  <a href="syain_delete.php?id={$member["id"]}">社員情報の削除</a>
   <br>
 TABLE4;
 }
 
 function show_update($id, $name, $age, $work){
   $error = get_error();
-  show_form("", "", "", "", "","update","更新");
+  show_form($id, $name, $age, $work,"","update","更新");
 }
 
-function show_delete(){
+function show_delete($id, $name, $age, $work){
   $error = get_error();
-  show_form("", "", "", "", "","delete","削除");
+  show_form($id, $name, $age, $work,"","delete","削除");
 }
 
 ?>

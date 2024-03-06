@@ -39,11 +39,36 @@ if(isset($_POST["status"])){
     exit;
   }
 
-  if($_POST["status"] == "delete"){
-    if ($db->deletesyain($id, $name, $age, $work) == false) {
-      $error = "DBエラー";
-      header("location: syain_create.php?error={$error}");
+  if ($_POST["status"] == "update") {
+    if (check_input($id, $name, $age, $work, $error) == false) {
+      header("location: syain_update.php?id={$id}&name={$name}&age={$age}&work={$work}&error={$error}");
       exit;
     }
+    if ($db->idexist($id) == true) {
+      $error = "既に使用されているIDです";
+      header("location: syain_update.php?error={$error}");
+      exit;
+    }
+    if ($db->updatesyain($id, $name, $age, $work) == false) {
+      $error = "DBエラー";
+      header("location: syain_update.php?error={$error}");
+      exit;
+    }
+    header("location: index.php");
+    exit;
+  } 
+  
+  if ($_POST["status"] == "delete") {
+    if (check_input($id, $name, $age, $work, $error) == false) {
+      header("location: syain_delete.php?id={$id}&name={$name}&age={$age}&work={$work}&error={$error}");
+      exit;
+    }
+    if ($db->deletesyain($id, $name, $age, $work) == false) {
+      $error = "DBエラー";
+      header("location: syain_delete.php?error={$error}");
+      exit;
+    }
+    header("location: index.php");
+    exit;
   }
 }

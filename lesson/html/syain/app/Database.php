@@ -85,6 +85,7 @@ class Database
   {
     try {
       $stmt = $this->pdo->prepare("UPDATE syain SET name = :name, age = :age, work = :work WHERE id = :id");
+      $stmt->bindParam(':id', $id);
       $stmt->bindParam(':name', $name);
       $stmt->bindParam(':age', $age);
       $stmt->bindParam(':work', $work);

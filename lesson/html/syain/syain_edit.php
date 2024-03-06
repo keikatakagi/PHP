@@ -3,6 +3,7 @@
 ini_set('display_errors', "On");
 
 require_once('common.php');
+
 $id = $_GET['id'];
 // var_dump($_GET['id']);
 $member = $db->getsyain($id);
